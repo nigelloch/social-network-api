@@ -5,7 +5,7 @@ const userController = {
     getAllUsers(req, res) {
         User.find({})
             .populate({
-                path: '',
+                path: 'thoughts',
                 select: '-__v'
             })
             .select('-__v')
@@ -18,9 +18,9 @@ const userController = {
     },
     // get one user by id
     getUserById({ params }, res) {
-        Pizza.findOne({ _id: params.id })
+        User.findOne({ _id: params.id })
           .populate({
-            path: '',
+            path: 'thoughts',
             select: '-__v'
           })
           .select('-__v')
@@ -30,8 +30,8 @@ const userController = {
             res.sendStatus(400);
           });
     },
-    // createPizza
-    createPizza({ body }, res) {
+    // createUser
+    createUser({ body }, res) {
     User.create(body)
       .then(dbSocialData => res.json(dbSocialData))
       .catch(err => res.json(err));

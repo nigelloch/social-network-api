@@ -2,22 +2,24 @@ const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({
     username: {
-        type: string,
+        type: String,
         unique: true,
         required: true,
         trim: true
     },
     email: {
-        type: string,
+        type: String,
         required: true,
         unique: true
     },
-    thoughts: {
-        
-    },
-    friends: {
-        
-    }
+    thoughts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+    }],
+    friends: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
     },
     {
     toJSON: {
@@ -29,12 +31,9 @@ const userSchema = new Schema({
     }
 );
 
-// get total count of comments and replies on retrieval
+// get total count of friends retrieval
 userSchema.virtual('friendCount').get(function() {
-    return this.comments.reduce(
-      (total, comment) => total + comment.replies.length + 1,
-      0
-    );
+    return this.friends.length
 });
 
 const User = model('User', userSchema);
