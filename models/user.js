@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+// user model
 const userSchema = new Schema({
     username: {
         type: String,
@@ -26,12 +27,11 @@ const userSchema = new Schema({
     virtuals: true,
     getters: true
     },
-    // prevents virtuals from creating duplicate of _id as `id`
     id: false
     }
 );
 
-// get total count of friends retrieval
+// friend count virtual
 userSchema.virtual('friendCount').get(function() {
     return this.friends.length
 });
