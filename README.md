@@ -20,7 +20,7 @@ Users will need to clone this repository as well as install npm, express and mon
 
 ##  Usage
 
-Please see the demonstration video below [here](./utils/video/social-network-api-demo.webm)
+Please see the demonstration video below [here](https://drive.google.com/file/d/10PTO5PpxfFvO5ra7Z7OEJP02OxRYOMol/view)
 
 
 ##  Tests
